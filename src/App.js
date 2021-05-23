@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { connect } from 'react-redux'
-import { getTodos } from './actions/todos'
+import { getTodos, deleteTodo } from './actions/todos'
 import TodoForm from './containers/TodoForm'
 
 class App extends Component{
@@ -10,8 +10,12 @@ class App extends Component{
     this.props.getTodos()
   }
 
+  handleClick = (event) => {
+    this.props.deleteTodo(event.target.id)
+  }
+
   render(){
-    const todos = this.props.todos.map((todo, i) => <li key={i}>{todo.description}</li>)
+    const todos = this.props.todos.map((todo, i) => <li key={i}>{todo.description} <button id={todo.id} onClick={this.handleClick}>X</button></li>)
     return (
       <div className="App">
         <h3>Todos Keeper</h3>
@@ -31,4 +35,4 @@ const mapStateToProps = (state) => {
     loading: state.todoReducer.loading
   }
 }
-export default connect(mapStateToProps, { getTodos })(App);
+export default connect(mapStateToProps, { getTodos, deleteTodo })(App);

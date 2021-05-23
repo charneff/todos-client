@@ -28,3 +28,20 @@ export const addTodo = (todo) => {
             }))
     }
 }
+
+export const deleteTodo = (id) => {
+    return (dispatch)=> {
+        dispatch({ type: "DELETING_TODO" })
+        let configObj = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+        fetch(`/todos/${id}`, configObj)
+        // .then(res => res.json())
+        .then(() => dispatch({
+            type: "TODO_DELETED", payload: id
+            }))
+    }
+}
