@@ -19,6 +19,10 @@
 
 // So we need a way to dispatch an action saying we are loading data, then to make a request to the API, and then to wait for the response and then dispatch another action with the response data.
 
+// We saw that when retrieving data from APIs, we run into a problem where the action creator returns an action before the data is retrieved. 
+//To resolve this, we use a middleware called Thunk. Thunk allows us to return a function inside of our action creator instead of a plain JavaScript object. 
+//That returned function receives the store's dispatch function, and with that we are able to dispatch multiple actions: one to place the state in a loading state, and another to update our store with the returned data.
+
 
 export const getTodos = () => {
     return (dispatch) => {
