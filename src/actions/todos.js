@@ -1,5 +1,27 @@
+// We're familiar with the Redux pattern in which the store dispatches an action to the reducer, 
+//the reducer uses that action to make changes to the state, 
+//and components re-render with new data.
+
+// fetch() request returns something called a Promise. 
+//A Promise object is an object that represents some value that will be available later. 
+//We can access the data when the promise "resolves" and becomes available by chaining a then() function onto our fetch() call.
+
+//This doesn't solve our problem though because the fetch() function will still return before the Promise is resolved.
+
+//There's another problem. Because retrieving data takes time, and because we always want our Redux application to reflect the current application state, we want to represent the state of the application in between the user asking for data and the application receiving the data. 
+
+//It's almost like each time a user asks for data we want to dispatch two actions to update our state: one to place our state as loading, and another to update the state with the data.
+
+// Invoke fetchAstronauts()
+// Directly after invoking fetch() dispatch an action to indicate that we are loading data.
+// Call the fetch() method, which runs, and returns a Promise that we are waiting to resolve.
+// When the Promise resolves, dispatch another action with a payload of the fetched data that gets sent to the reducer.
+
+// So we need a way to dispatch an action saying we are loading data, then to make a request to the API, and then to wait for the response and then dispatch another action with the response data.
+
+
 export const getTodos = () => {
-    return (dispatch )=> {
+    return (dispatch) => {
         dispatch({ type: "LOADING_TODOS" })
         fetch('/todos')
         .then(res => res.json())
