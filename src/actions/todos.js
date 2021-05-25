@@ -12,7 +12,7 @@
 
 //It's almost like each time a user asks for data we want to dispatch two actions to update our state: one to place our state as loading, and another to update the state with the data.
 
-// Invoke fetchAstronauts()
+// Invoke fetch()
 // Directly after invoking fetch() dispatch an action to indicate that we are loading data.
 // Call the fetch() method, which runs, and returns a Promise that we are waiting to resolve.
 // When the Promise resolves, dispatch another action with a payload of the fetched data that gets sent to the reducer.
